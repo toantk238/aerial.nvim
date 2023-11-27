@@ -34,6 +34,11 @@
   (#set! "kind" "Method")
   ) @symbol
 
+(abstract_method_signature
+  name: (property_identifier) @name
+  (#set! "kind" "Method")
+  ) @symbol
+
 (type_alias_declaration
   name: (type_identifier) @name
   (#set! "kind" "Variable")
