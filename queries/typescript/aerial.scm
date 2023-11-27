@@ -28,6 +28,11 @@
   (#set! "kind" "Method")
   ) @symbol
 
+(method_signature
+  name: (property_identifier) @name
+  (#set! "kind" "Method")
+) @symbol
+
 (public_field_definition
   name: (property_identifier) @name
   value: (arrow_function)
