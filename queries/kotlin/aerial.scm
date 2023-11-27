@@ -11,7 +11,9 @@
 (class_declaration
   body: (class_body
     (property_declaration
-      variable: (variable_declaration) @name @symbol
+      variable: (variable_declaration
+        (simple_identifier) @name
+      ) @symbol
     )
   )
   (#set! "kind" "Property")
