@@ -8,3 +8,14 @@
   name: (simple_identifier)? @name
   (#set! "kind" "Method")
   ) @name  @symbol
+
+(class_declaration
+  body : (class_body
+    (property_declaration
+      name: (pattern
+        bound_identifier: (simple_identifier) @name
+      )
+    ) @symbol
+  )
+  (#set! "kind" "Property")
+)
