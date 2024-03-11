@@ -1,7 +1,7 @@
 local default_options = {
   -- Priority list of preferred backends for aerial.
   -- This can be a filetype map (see :help aerial-filetype-map)
-  backends = { "treesitter", "lsp", "markdown", "man" },
+  backends = { "treesitter", "lsp", "markdown", "asciidoc", "man" },
 
   layout = {
     -- These control the width of the aerial window.
@@ -342,6 +342,11 @@ local default_options = {
     update_delay = 300,
   },
 
+  asciidoc = {
+    -- How long to wait (in ms) after a buffer change before updating
+    update_delay = 300,
+  },
+
   man = {
     -- How long to wait (in ms) after a buffer change before updating
     update_delay = 300,
@@ -509,22 +514,6 @@ M.setup = function(opts)
     newconf.use_lspkind = true
   end
 
-  -- for backwards compatibility
-  for k, _ in pairs(default_options.lsp) do
-    if newconf[k] ~= nil then
-      vim.notify_once(
-        string.format(
-          "aerial.config.%s should be moved to aerial.config.lsp.%s (see :help aerial-options)\nThis shim will be removed on 2024-02-11",
-          k,
-          k
-        ),
-        vim.log.levels.WARN
-      )
-      ---@diagnostic disable-next-line assign-type-mismatch
-      newconf.lsp[k] = newconf[k]
-      newconf[k] = nil
-    end
-  end
   newconf.default_icons = newconf.nerd_font and nerd_icons or plain_icons
 
   if type(newconf.open_automatic) == "boolean" then
