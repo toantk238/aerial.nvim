@@ -115,7 +115,16 @@ end
 ---@param winid? integer
 ---@return integer?
 M.get_aerial_win = function(winid)
-  return M.get_winid_from_var(winid or 0, "aerial_win")
+  local aerial_win = M.get_winid_from_var(winid or 0, "aerial_win")
+  if not aerial_win and config.attach_mode == "global" then
+    for _, tab_win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+      if M.is_aerial_win(tab_win) then
+        aerial_win = tab_win
+        break
+      end
+    end
+  end
+  return aerial_win
 end
 
 ---@param winid? integer
@@ -362,9 +371,9 @@ M.render_centered_text = function(bufnr, text)
     line = string.rep(" ", (width - vim.api.nvim_strwidth(line)) / 2) .. line
     table.insert(lines, line)
   end
-  vim.api.nvim_buf_set_option(bufnr, "modifiable", true)
+  vim.bo[bufnr].modifiable = true
   vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, lines)
-  vim.api.nvim_buf_set_option(bufnr, "modifiable", false)
+  vim.bo[bufnr].modifiable = false
 end
 
 M.pack = function(...)

@@ -417,6 +417,8 @@ local nerd_icons = {
   Collapsed     = " ",
 }
 
+---@diagnostic disable-next-line: deprecated
+local islist = vim.islist or vim.tbl_islist
 local M = {}
 
 M.get_filetypes = function(bufnr)
@@ -429,7 +431,7 @@ end
 ---@param default any
 local function create_filetype_opt_getter(name, option, default)
   local buffer_option_name = string.format("aerial_%s", name)
-  if type(option) ~= "table" or vim.tbl_islist(option) then
+  if type(option) ~= "table" or islist(option) then
     return function(bufnr)
       local has_buf_option, buf_option = pcall(vim.api.nvim_buf_get_var, bufnr, buffer_option_name)
       if has_buf_option then
