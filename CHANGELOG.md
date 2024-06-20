@@ -1,5 +1,51 @@
 # Changelog
 
+## [1.4.0](https://github.com/toantk238/aerial.nvim/compare/v1.3.0...v1.4.0) (2024-06-20)
+
+
+### Features
+
+* **backend:** add asciidoc ([#348](https://github.com/toantk238/aerial.nvim/issues/348)) ([c45d567](https://github.com/toantk238/aerial.nvim/commit/c45d5672c870ee8ee6b6feb74d27940a5ddf6748))
+* cache aerial tree-sitter queries ([#325](https://github.com/toantk238/aerial.nvim/issues/325)) ([51bdd35](https://github.com/toantk238/aerial.nvim/commit/51bdd35f4f984293d4200e52aeff44f12febc6f2))
+* **lualine:** added `sep_icon` option ([#303](https://github.com/toantk238/aerial.nvim/issues/303)) ([9ef83d9](https://github.com/toantk238/aerial.nvim/commit/9ef83d9a7a4ac471d14e608da50b8d91459cae10))
+* option to enable earial in diff windows ([#355](https://github.com/toantk238/aerial.nvim/issues/355)) ([bdc94c5](https://github.com/toantk238/aerial.nvim/commit/bdc94c53871bf16a4043ab563aa87d4677ab4907)), closes [#354](https://github.com/toantk238/aerial.nvim/issues/354)
+* set scope from node captures and add basic query documentation ([#318](https://github.com/toantk238/aerial.nvim/issues/318)) ([2d169d3](https://github.com/toantk238/aerial.nvim/commit/2d169d349721a94387b9feca5c787296448a623d))
+* ship the experimental treesitter selection range ([#279](https://github.com/toantk238/aerial.nvim/issues/279)) ([8e4090b](https://github.com/toantk238/aerial.nvim/commit/8e4090bf9412e24b05823c771cb3956c2ba72981))
+* support loongdoc with asciidoc backend ([#377](https://github.com/toantk238/aerial.nvim/issues/377)) ([eb25396](https://github.com/toantk238/aerial.nvim/commit/eb25396dae306cef5b8fffbe9ae98283d2f1c199))
+* **telescope:** only reverse results when `sorting_strategy = "descending"` ([#307](https://github.com/toantk238/aerial.nvim/issues/307)) ([b811243](https://github.com/toantk238/aerial.nvim/commit/b811243fdc7f624e63ccb6269332aa874afae1e6))
+* **telescope:** Save position into jumplist before 'edit' action ([#340](https://github.com/toantk238/aerial.nvim/issues/340)) ([9523ebc](https://github.com/toantk238/aerial.nvim/commit/9523ebc7f0805a4d69a76ef35960a7788a4127af))
+* **treesitter:** groovy support ([#351](https://github.com/toantk238/aerial.nvim/issues/351)) ([c8a40b1](https://github.com/toantk238/aerial.nvim/commit/c8a40b12668b0861c9c519f13a8a5f29a1f1ef28))
+* **treesitter:** ruby queries can set the scope of methods ([#317](https://github.com/toantk238/aerial.nvim/issues/317)) ([3a3baf0](https://github.com/toantk238/aerial.nvim/commit/3a3baf0930444c78d19964fdb401bd3a6a23270f))
+* **treesitter:** support for objdump files ([#320](https://github.com/toantk238/aerial.nvim/issues/320)) ([eb301a4](https://github.com/toantk238/aerial.nvim/commit/eb301a4763ba1bb6be4038e9167dc14581bfdc8a))
+* **treesitter:** support for snakemake ([#316](https://github.com/toantk238/aerial.nvim/issues/316)) ([c306ffc](https://github.com/toantk238/aerial.nvim/commit/c306ffcf343c737730c119bdf0d7447e7d85e8d2))
+* **tsx:** treesitter support for JSX symbols ([#365](https://github.com/toantk238/aerial.nvim/issues/365)) ([7045e7c](https://github.com/toantk238/aerial.nvim/commit/7045e7cb0017d222122a1f6e5795e69754d8b9db))
+* **zig:** basic treesitter support for zig. ([#359](https://github.com/toantk238/aerial.nvim/issues/359)) ([5961a1a](https://github.com/toantk238/aerial.nvim/commit/5961a1afc0384845934073d3c7d46ea328d98d89))
+
+
+### Bug Fixes
+
+* AerialLine highlight has highest priority ([#329](https://github.com/toantk238/aerial.nvim/issues/329)) ([712802e](https://github.com/toantk238/aerial.nvim/commit/712802e73107883a445b36f4197376eb60691b85))
+* attach_mode="global" never allows multiple windows to open ([#369](https://github.com/toantk238/aerial.nvim/issues/369)) ([228fad1](https://github.com/toantk238/aerial.nvim/commit/228fad11393322537d9662c0347f75549a3d6c0a))
+* autoclose floating aerial win on leave ([483d2c8](https://github.com/toantk238/aerial.nvim/commit/483d2c860aed1b857c48d6943e6d2b261653ebfb))
+* better error message for refetch_symbols ([#328](https://github.com/toantk238/aerial.nvim/issues/328)) ([8876456](https://github.com/toantk238/aerial.nvim/commit/88764566f96bf900a64b3dcd6d178cfb69b1c8ce))
+* can open aerial in ignored windows ([#352](https://github.com/toantk238/aerial.nvim/issues/352)) ([51a0794](https://github.com/toantk238/aerial.nvim/commit/51a07949abf169b4cad30e14c165ac1ec0ce4e6f))
+* check if bufdata.last_win != nil ([#356](https://github.com/toantk238/aerial.nvim/issues/356)) ([24ebaca](https://github.com/toantk238/aerial.nvim/commit/24ebacab5821107c50f628e8e7774f105c08fe9b))
+* **cpp:** add support for declared functions ([#314](https://github.com/toantk238/aerial.nvim/issues/314)) ([340d019](https://github.com/toantk238/aerial.nvim/commit/340d0197d7d30191e31c625c3b2e20912a8e301a))
+* default highlights in Neovim 0.9 ([d82a994](https://github.com/toantk238/aerial.nvim/commit/d82a994d66a9c6c700f240498304bd6d68fb33f0))
+* delay when using `q` to close ([#311](https://github.com/toantk238/aerial.nvim/issues/311)) ([5f6de33](https://github.com/toantk238/aerial.nvim/commit/5f6de33780ea2f55ad54719eb6bd68ac1026535c))
+* don't clear stored data when buffer is unlisted ([edfdcf1](https://github.com/toantk238/aerial.nvim/commit/edfdcf1d45525b063fe4f39ee67e6d51f3dffa11))
+* don't jump to top of buffer when autojump = true ([#309](https://github.com/toantk238/aerial.nvim/issues/309)) ([6573d6e](https://github.com/toantk238/aerial.nvim/commit/6573d6ec2166512549f4af7add7b9337fa4a768e))
+* **javascript:** treesitter queries changed upstream ([d21482d](https://github.com/toantk238/aerial.nvim/commit/d21482d3be3228dde594aba31106db428292742c))
+* **julia:** treesitter queries changed upstream ([#362](https://github.com/toantk238/aerial.nvim/issues/362)) ([2f1b897](https://github.com/toantk238/aerial.nvim/commit/2f1b8979d29c30955dbc5a8e4880071df6da1327))
+* **lualine:** use `sep_icon` in dense mode as well ([#360](https://github.com/toantk238/aerial.nvim/issues/360)) ([218eae4](https://github.com/toantk238/aerial.nvim/commit/218eae4cb7099898b379aa0788c6e3b6a463a23d))
+* Neovim closes on bdelete ([#333](https://github.com/toantk238/aerial.nvim/issues/333)) ([e2e3bc2](https://github.com/toantk238/aerial.nvim/commit/e2e3bc2df4490690ea005395eecdc8eeb30c4def))
+* race condition when stopping loading timer ([#331](https://github.com/toantk238/aerial.nvim/issues/331)) ([cf69a43](https://github.com/toantk238/aerial.nvim/commit/cf69a43c086da6db5d93fb4d1a42cf9b278f6a12))
+* refactor deprecated methods in neovim 0.10 ([daeee77](https://github.com/toantk238/aerial.nvim/commit/daeee77f3902d170bf7e036bf2a537b14a7ca6e7))
+* remove extra double quotes for fzf prompt ([#339](https://github.com/toantk238/aerial.nvim/issues/339)) ([ce9f397](https://github.com/toantk238/aerial.nvim/commit/ce9f397d046b6b2bb2aa3ee89fced937c09e4799))
+* set lsp.diagnostics_trigger_update=false by default ([993142d](https://github.com/toantk238/aerial.nvim/commit/993142d49274092c64a2d475aa726df3c323949d))
+* update tests for vimdoc parser changes ([34cfc01](https://github.com/toantk238/aerial.nvim/commit/34cfc0143d9e0222dba4d1e312ade66214bba848))
+* **vim treesitter:** support functions with field expression names ([#332](https://github.com/toantk238/aerial.nvim/issues/332)) ([ef08437](https://github.com/toantk238/aerial.nvim/commit/ef08437108247d8805ae388f2699537eac2fd810))
+
 ## [1.7.0](https://github.com/stevearc/aerial.nvim/compare/v1.6.0...v1.7.0) (2024-05-16)
 
 
