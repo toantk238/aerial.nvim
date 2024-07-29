@@ -1,5 +1,29 @@
 # Changelog
 
+## [2.0.0](https://github.com/stevearc/aerial.nvim/compare/v1.8.0...v2.0.0) (2024-07-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* drop support for Neovim 0.8 ([#387](https://github.com/stevearc/aerial.nvim/issues/387))
+
+### Code Refactoring
+
+* drop support for Neovim 0.8 ([#387](https://github.com/stevearc/aerial.nvim/issues/387)) ([b309d0d](https://github.com/stevearc/aerial.nvim/commit/b309d0df6b59923a2155f5a8b7ef99777b3311c9))
+
+## [1.8.0](https://github.com/stevearc/aerial.nvim/compare/v1.7.0...v1.8.0) (2024-07-01)
+
+
+### Features
+
+* highlight parent symbol in Nav UI ([#380](https://github.com/stevearc/aerial.nvim/issues/380)) ([db0af49](https://github.com/stevearc/aerial.nvim/commit/db0af491ff13c18a966ce2f9ac7f5211aec000a7))
+* support loongdoc with asciidoc backend ([#377](https://github.com/stevearc/aerial.nvim/issues/377)) ([eb25396](https://github.com/stevearc/aerial.nvim/commit/eb25396dae306cef5b8fffbe9ae98283d2f1c199))
+
+
+### Bug Fixes
+
+* update tests for vimdoc parser changes ([34cfc01](https://github.com/stevearc/aerial.nvim/commit/34cfc0143d9e0222dba4d1e312ade66214bba848))
+
 ## [1.7.0](https://github.com/stevearc/aerial.nvim/compare/v1.6.0...v1.7.0) (2024-05-16)
 
 
