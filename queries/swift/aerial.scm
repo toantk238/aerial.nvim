@@ -4,6 +4,10 @@
   (#set! "kind" "Class")
   ) @name @symbol
 
+(init_declaration
+  (#set! "kind" "Method")
+  ) @name  @symbol
+
 (function_declaration
   name: (simple_identifier)? @name
   (#set! "kind" "Method")
