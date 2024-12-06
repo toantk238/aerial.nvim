@@ -1,25 +1,86 @@
+(protocol_declaration
+  name: _ @name
+  (#set! "kind" "Interface")) @symbol
+
 (class_declaration
-  name: (type_identifier)? @name
-  name: (user_type)? @name
-  (#set! "kind" "Class")
-  ) @name @symbol
+  "enum"
+  .
+  name: _ * @name
+  (#set! "kind" "Enum")) @symbol
+
+(class_declaration
+  "struct"
+  .
+  name: _ * @name
+  (#set! "kind" "Struct")) @symbol
+
+(class_declaration
+  name: _ * @name
+  (#set! "kind" "Class")) @symbol
 
 (init_declaration
-  (#set! "kind" "Method")
-  ) @name  @symbol
+  name: "init" @name
+  (#set! "kind" "Constructor")) @symbol
+
+(deinit_declaration
+  "deinit" @name
+  (#set! "kind" "Constructor")) @symbol
+
+(enum_class_body
+  (function_declaration
+    name: _ @name
+    (#set! "kind" "Method")) @symbol)
+
+(class_body
+  (function_declaration
+    name: _ @name
+    (#set! "kind" "Method")) @symbol)
+
+(enum_class_body
+  (property_declaration
+    name: _ @name
+    computed_value: _
+    (#set! "kind" "Method")) @symbol)
+
+(class_body
+  (property_declaration
+    name: _ @name
+    computed_value: _
+    (#set! "kind" "Method")) @symbol)
+
+(enum_class_body
+  (property_declaration
+    name: _ @name
+    !computed_value
+    (#set! "kind" "Property")) @symbol)
+
+(class_body
+  (property_declaration
+    name: _ @name
+    !computed_value
+    (#set! "kind" "Property")) @symbol)
+
+(property_declaration
+  name: _ @name
+  computed_value: _
+  (#set! "kind" "Function")) @symbol
+
+(property_declaration
+  name: _ @name
+  !computed_value
+  (#set! "kind" "Variable")) @symbol
+
+
+(protocol_function_declaration
+  name: _ @name
+  (#set! "kind" "Method")) @symbol
+
+(protocol_property_declaration
+  name: (pattern
+          bound_identifier: _ @name)
+  (#set! "kind" "Property")) @symbol
 
 (function_declaration
-  name: (simple_identifier)? @name
-  (#set! "kind" "Method")
-  ) @name  @symbol
+  name: _ @name
+  (#set! "kind" "Function")) @symbol
 
-(class_declaration
-  body : (class_body
-    (property_declaration
-      name: (pattern
-        bound_identifier: (simple_identifier) @name
-      )
-    ) @symbol
-  )
-  (#set! "kind" "Property")
-)
