@@ -10,6 +10,7 @@ A code outline window for skimming and quick navigation
 - [Commands](#commands)
 - [Options](#options)
 - [Third-party integrations](#third-party-integrations)
+  - [Snacks](#snacks)
   - [Telescope](#telescope)
   - [fzf](#fzf)
   - [Lualine](#lualine)
@@ -142,7 +143,10 @@ In addition, you will need to have either Treesitter or a working LSP client. Yo
 - c_sharp
 - cpp
 - dart
+- djot
 - elixir
+- enforce
+- fish
 - go
 - groovy
 - help
@@ -157,11 +161,12 @@ In addition, you will need to have either Treesitter or a working LSP client. Yo
 - make
 - markdown
 - norg
+- nu
 - objdump
-- org
 - php
 - proto
 - python
+- r
 - rst
 - ruby
 - rust
@@ -589,6 +594,25 @@ end_col: number
 
 ## Third-party integrations
 
+### Snacks
+
+If you have [snacks.nvim](https://github.com/folke/snacks.nvim) installed, you can use the picker to find and jump to symbols.
+
+```lua
+require("aerial").snacks_picker()
+```
+
+You can pass in an options table that will get sent to `Snacks.picker.pick` directly. Use this to customize the display.
+
+```lua
+require("aerial").snacks_picker({
+  layout = {
+    preset = "dropdown",
+    preview = false,
+  }
+})
+```
+
 ### Telescope
 
 If you have [telescope](https://github.com/nvim-telescope/telescope.nvim)
@@ -727,6 +751,7 @@ hi AerialGuide2 guifg=Blue
 - [prev(step)](doc/api.md#prevstep)
 - [next_up(count)](doc/api.md#next_upcount)
 - [prev_up(count)](doc/api.md#prev_upcount)
+- [snacks_picker(opts)](doc/api.md#snacks_pickeropts)
 - [get_location(exact)](doc/api.md#get_locationexact)
 - [tree_close_all(bufnr)](doc/api.md#tree_close_allbufnr)
 - [tree_open_all(bufnr)](doc/api.md#tree_open_allbufnr)

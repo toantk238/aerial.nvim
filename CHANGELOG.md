@@ -1,5 +1,38 @@
 # Changelog
 
+## [2.5.0](https://github.com/stevearc/aerial.nvim/compare/v2.4.0...v2.5.0) (2025-02-14)
+
+
+### Features
+
+* add treesitter support for nushell ([#438](https://github.com/stevearc/aerial.nvim/issues/438)) ([4c0c3bd](https://github.com/stevearc/aerial.nvim/commit/4c0c3bd8d8e539a8513bffa60ca171874251736f))
+* **enforce:** treesitter symbol support ([#446](https://github.com/stevearc/aerial.nvim/issues/446)) ([a89f5e3](https://github.com/stevearc/aerial.nvim/commit/a89f5e39bbbd445242eebdbaac971e0c70ddd3b4))
+* **fish:** add treesitter query ([#437](https://github.com/stevearc/aerial.nvim/issues/437)) ([d767bd8](https://github.com/stevearc/aerial.nvim/commit/d767bd8a92869c337c5a71707ce8287234e47b75))
+* integrate with snacks picker ([e499ed3](https://github.com/stevearc/aerial.nvim/commit/e499ed3e30cd3682810fdd256e8f0175769f6db9))
+* **php:** treesitter backend extracts function scope ([#436](https://github.com/stevearc/aerial.nvim/issues/436)) ([4c959cf](https://github.com/stevearc/aerial.nvim/commit/4c959cf65c5420d54b24b61a77b681dcfca0bc57))
+
+
+### Bug Fixes
+
+* default vim.lsp.buf.document_symbol behavior is unchanged ([#441](https://github.com/stevearc/aerial.nvim/issues/441)) ([63eb465](https://github.com/stevearc/aerial.nvim/commit/63eb4658b91b457518c44c958d5ceeb231778536))
+* regenerate groovy snapshot for updated parser ([6d1c4ca](https://github.com/stevearc/aerial.nvim/commit/6d1c4ca65d2380630da122e97ae1ab37ccdca9e8))
+* update djot query for upstream changes ([fc1e7a7](https://github.com/stevearc/aerial.nvim/commit/fc1e7a7a31ac835c499d3eec300632ee9f7d2c42))
+
+## [2.4.0](https://github.com/stevearc/aerial.nvim/compare/v2.3.1...v2.4.0) (2024-12-21)
+
+
+### Features
+
+* add to jumplist before jumping ([#424](https://github.com/stevearc/aerial.nvim/issues/424)) ([247df21](https://github.com/stevearc/aerial.nvim/commit/247df216704cbe3cfa68e2ae5515c3485e281364))
+* **djot:** treesitter support for djot ([#433](https://github.com/stevearc/aerial.nvim/issues/433)) ([8784058](https://github.com/stevearc/aerial.nvim/commit/8784058ba957dd84730fc76aec93f56c1b980583))
+* treesitter support for swift ([#428](https://github.com/stevearc/aerial.nvim/issues/428)) ([fd7fbe3](https://github.com/stevearc/aerial.nvim/commit/fd7fbe36772d7a955815c90ff9b58523bfdb410d))
+
+
+### Bug Fixes
+
+* **java:** don't start methods at annotations ([#417](https://github.com/stevearc/aerial.nvim/issues/417)) ([60a7846](https://github.com/stevearc/aerial.nvim/commit/60a784614acb1d7695bd9ae0fee8ada1bf7b0c28))
+* **julia:** update treesitter queries ([1ff1ab3](https://github.com/stevearc/aerial.nvim/commit/1ff1ab3891a823d967074cf949fe01770753e54a))
+
 ## [2.3.1](https://github.com/stevearc/aerial.nvim/compare/v2.3.0...v2.3.1) (2024-10-16)
 
 

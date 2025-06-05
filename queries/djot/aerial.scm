@@ -1,4 +1,4 @@
 (section
-  (headline
-    item: (item) @name)
+  (heading
+    content: (content) @name)
   (#set! "kind" "Interface")) @symbol

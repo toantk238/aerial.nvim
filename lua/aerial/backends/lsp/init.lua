@@ -6,30 +6,24 @@ local util = require("aerial.backends.util")
 
 local M = {}
 
-local function replace_handler(name, callback, preserve_callback)
+local function hook_handler(name, callback)
   local old_callback = vim.lsp.handlers[name]
   local new_callback
   new_callback = function(...)
     callback(...)
-    if preserve_callback then
-      old_callback(...)
-    end
+    old_callback(...)
   end
   vim.lsp.handlers[name] = new_callback
 end
 
 local has_hook = false
-local function hook_handlers(preserve_symbol_callback)
+local function hook_handlers()
   if has_hook then
     return
   end
   has_hook = true
-  replace_handler(
-    "textDocument/documentSymbol",
-    callbacks.symbol_callback,
-    preserve_symbol_callback
-  )
-  replace_handler("textDocument/publishDiagnostics", callbacks.on_publish_diagnostics, true)
+  hook_handler("textDocument/documentSymbol", callbacks.symbol_callback)
+  hook_handler("textDocument/publishDiagnostics", callbacks.on_publish_diagnostics)
 end
 
 M.fetch_symbols = function(bufnr)
@@ -41,8 +35,13 @@ M.fetch_symbols = function(bufnr)
   if not client then
     return
   end
+  local request = vim.fn.has("nvim-0.11") == 1 and function(c, ...)
+    return c:request(...)
+  end or function(c, ...)
+    c.request(...)
+  end
   local request_success =
-    client.request("textDocument/documentSymbol", params, callbacks.symbol_callback, bufnr)
+    request(client, "textDocument/documentSymbol", params, callbacks.symbol_callback, bufnr)
   if not request_success then
     vim.notify("Error requesting document symbols", vim.log.levels.WARN)
   end
@@ -65,7 +64,13 @@ M.fetch_symbols_sync = function(bufnr, opts)
     return
   end
   local response
-  local request_success = client.request(
+  local request = vim.fn.has("nvim-0.11") == 1 and function(c, ...)
+    return c:request(...)
+  end or function(c, ...)
+    c.request(...)
+  end
+  local request_success = request(
+    client,
     "textDocument/documentSymbol",
     params,
     function(err, result)
@@ -105,16 +110,14 @@ M.is_supported = function(bufnr)
   return true, nil
 end
 
-M.on_attach = function(client, bufnr, opts)
-  if type(bufnr) == "table" then
-    opts = bufnr
-    bufnr = 0
-  elseif not bufnr then
-    bufnr = 0
+---@param client vim.lsp.Client
+---@param bufnr? integer
+M.on_attach = function(client, bufnr)
+  if not bufnr then
+    bufnr = vim.api.nvim_get_current_buf()
   end
-  opts = opts or {}
   if lsp_util.client_supports_symbols(client) then
-    hook_handlers(opts.preserve_callback)
+    hook_handlers()
     -- This is called from the LspAttach autocmd
     -- The client isn't fully attached until just after that autocmd completes, so we need to
     -- schedule the attach
