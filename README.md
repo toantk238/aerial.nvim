@@ -12,6 +12,7 @@ A code outline window for skimming and quick navigation
 - [Third-party integrations](#third-party-integrations)
   - [Snacks](#snacks)
   - [Telescope](#telescope)
+  - [fzf-lua](#fzf-lua)
   - [fzf](#fzf)
   - [Lualine](#lualine)
 - [Highlight](#highlight)
@@ -142,6 +143,7 @@ In addition, you will need to have either Treesitter or a working LSP client. Yo
 - c
 - c_sharp
 - cpp
+- css
 - dart
 - djot
 - elixir
@@ -151,6 +153,7 @@ In addition, you will need to have either Treesitter or a working LSP client. Yo
 - groovy
 - help
 - html
+- ini
 - java
 - javascript
 - json
@@ -176,12 +179,14 @@ In addition, you will need to have either Treesitter or a working LSP client. Yo
 - starlark
 - swift
 - teal
+- terraform
 - toml
 - tsx
 - typescript
 - usd
 - vim
 - vimdoc
+- vue
 - xml
 - yaml
 - zig
@@ -655,6 +660,23 @@ If you want the command to autocomplete, you can load the extension first (this 
 require("telescope").load_extension("aerial")
 ```
 
+### fzf-lua
+
+If you have [fzf-lua](https://github.com/ibhagwan/fzf-lua/) installed, you can use the picker to find and jump to symbols.
+It supports multi-select and uses the default actions from the `files` picker (e.g. `<C-s>` to open a symbol in a split).
+
+```lua
+require("aerial").fzf_lua_picker()
+```
+
+You can pass in an options table that will get sent to `require('fzf-lua').fzf_exec` directly. Use this to customize the display.
+
+```lua
+require("aerial").fzf_lua_picker({
+  profile = 'ivy',
+})
+```
+
 ### fzf
 
 If you have [fzf](https://github.com/junegunn/fzf.vim) installed you can trigger
@@ -752,6 +774,7 @@ hi AerialGuide2 guifg=Blue
 - [next_up(count)](doc/api.md#next_upcount)
 - [prev_up(count)](doc/api.md#prev_upcount)
 - [snacks_picker(opts)](doc/api.md#snacks_pickeropts)
+- [fzf_lua_picker(opts)](doc/api.md#fzf_lua_pickeropts)
 - [get_location(exact)](doc/api.md#get_locationexact)
 - [tree_close_all(bufnr)](doc/api.md#tree_close_allbufnr)
 - [tree_open_all(bufnr)](doc/api.md#tree_open_allbufnr)
