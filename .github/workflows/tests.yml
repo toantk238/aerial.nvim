@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - stevearc-ci
   pull_request:
     branches:
       - master
@@ -44,16 +45,14 @@ jobs:
         uses: JohnnyMorganz/stylua-action@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          version: v2.0.2
+          version: v2.3.1
           args: --check lua tests
 
   run_tests:
     strategy:
       matrix:
         include:
-          - nvim_tag: v0.9.4
-          - nvim_tag: v0.10.4
-          - nvim_tag: v0.11.0
+          - nvim_tag: v0.11.5
 
     name: Run tests
     runs-on: ubuntu-24.04
@@ -61,14 +60,13 @@ jobs:
       NVIM_TAG: ${{ matrix.nvim_tag }}
     steps:
       - uses: actions/checkout@v4
+      - uses: tree-sitter/setup-action@v2
+        with:
+          install-lib: false
 
       - name: Install Neovim and dependencies
         run: |
           bash ./.github/workflows/install_nvim.sh
-
-      - name: Install tree-sitter CLI
-        run: |
-          npm install -g tree-sitter-cli
 
       - name: Run tests
         run: |
