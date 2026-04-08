@@ -36,7 +36,8 @@ M.fetch_symbols_sync = function(bufnr)
         parent = parent,
         lnum = lnum,
         col = 0,
-        end_lnum = 0,
+        end_lnum = lnum,
+        end_col = line:len(),
       }
       if parent then
         if not parent.children then
