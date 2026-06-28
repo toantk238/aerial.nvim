@@ -23,8 +23,16 @@ local function list_files(dir)
 end
 
 describe("treesitter", function()
-  -- the norg parser is a pain to install.
-  local skip_tests = { "norg_test.norg" }
+  local skip_tests = {
+    -- the norg parser is a pain to install.
+    "norg_test.norg",
+    -- The djot revision pinned by nvim-treesitter (74fac1f) predates tree-sitter
+    -- 0.26 support; its external scanner segfaults while parsing with
+    -- libtree-sitter >=0.26. The fix lives only on the upstream's Codeberg repo,
+    -- which nvim-treesitter's GitHub-only downloader can't install. Re-enable
+    -- once nvim-treesitter bumps its djot pin to a 0.26-compatible revision.
+    "djot_test.dj",
+  }
 
   for _, filename in ipairs(list_files("tests/treesitter")) do
     if vim.tbl_contains(skip_tests, filename) then

@@ -12,9 +12,9 @@ on:
 jobs:
   luacheck:
     name: Luacheck
-    runs-on: ubuntu-24.04
+    runs-on: self-hosted-ubuntu
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Prepare
         run: |
@@ -28,9 +28,9 @@ jobs:
 
   typecheck:
     name: typecheck
-    runs-on: ubuntu-24.04
+    runs-on: self-hosted-ubuntu
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: stevearc/nvim-typecheck-action@v2
         with:
           path: lua
@@ -38,28 +38,28 @@ jobs:
 
   stylua:
     name: StyLua
-    runs-on: ubuntu-24.04
+    runs-on: self-hosted-ubuntu
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Stylua
-        uses: JohnnyMorganz/stylua-action@v4
+        uses: JohnnyMorganz/stylua-action@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          version: v2.3.1
+          version: v2.4.1
           args: --check lua tests
 
   run_tests:
     strategy:
       matrix:
         include:
-          - nvim_tag: v0.11.5
+          - nvim_tag: v0.12.2
 
     name: Run tests
-    runs-on: ubuntu-24.04
+    runs-on: self-hosted-ubuntu
     env:
       NVIM_TAG: ${{ matrix.nvim_tag }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: tree-sitter/setup-action@v2
         with:
           install-lib: false
@@ -81,9 +81,9 @@ jobs:
 
   update_docs:
     name: Update docs
-    runs-on: ubuntu-24.04
+    runs-on: self-hosted-ubuntu
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Install Neovim and dependencies
         run: |
@@ -118,17 +118,15 @@ jobs:
       - run_tests
       - typecheck
       - update_docs
-    runs-on: ubuntu-24.04
+    runs-on: self-hosted-ubuntu
     steps:
-      - uses: googleapis/release-please-action@v4
+      - uses: googleapis/release-please-action@v5
         id: release
         with:
           release-type: simple
-      - uses: actions/checkout@v4
-      - uses: rickstaa/action-create-tag@v1
+      - uses: actions/checkout@v6
+      - name: Update stable tag
         if: ${{ steps.release.outputs.release_created }}
-        with:
-          tag: stable
-          message: "Current stable release: ${{ steps.release.outputs.tag_name }}"
-          tag_exists_error: false
-          force_push_tag: true
+        run: |
+          git tag -f stable
+          git push -f origin stable

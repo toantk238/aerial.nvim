@@ -10,12 +10,11 @@ end
 ---@param end_node TSNode
 ---@return aerial.Range
 M.range_from_nodes = function(start_node, end_node)
-  local row, col = start_node:start()
-  local end_row, end_col = end_node:end_()
+  local start_row, start_col, end_row, end_col = start_node:range()
   return {
-    lnum = row + 1,
+    lnum = start_row + 1,
     end_lnum = end_row + 1,
-    col = col,
+    col = start_col,
     end_col = end_col,
   }
 end
@@ -37,13 +36,21 @@ end
 
 ---@param lang string
 ---@return vim.treesitter.Query|nil
----@note caches queries to avoid filesystem hits on neovim 0.9+
+---@return string|nil err  parse error when the aerial query is invalid for this grammar
+---@note caches queries (and parse errors) to avoid filesystem hits on neovim 0.9+
 M.get_query = function(lang)
   if not query_cache[lang] then
-    query_cache[lang] = { query = vim.treesitter.query.get(lang, "aerial") }
+    -- Defensive against query files that reference node types missing from
+    -- the installed grammar. See #506.
+    local ok, query = pcall(vim.treesitter.query.get, lang, "aerial")
+    if ok then
+      query_cache[lang] = { query = query }
+    else
+      query_cache[lang] = { err = tostring(query) }
+    end
   end
-
-  return query_cache[lang].query
+  local entry = query_cache[lang]
+  return entry.query, entry.err
 end
 
 ---@param lang string
